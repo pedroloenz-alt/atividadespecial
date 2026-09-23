@@ -171,7 +171,23 @@ function Index() {
 
       <section className="faq-section section-pad"><div className="narrow-wrap"><p className="section-kicker">DÚVIDAS FREQUENTES</p><h2>Tudo o que você precisa saber</h2><Accordion type="single" collapsible>{faqs.map(([q,a],i)=><AccordionItem value={`item-${i}`} key={q}><AccordionTrigger>{q}</AccordionTrigger><AccordionContent>{a}</AccordionContent></AccordionItem>)}</Accordion></div></section>
       <section className="guarantee-section"><ShieldCheck /><div><h2>7 dias de garantia</h2><p>Conheça o material com tranquilidade. Se não fizer sentido para você, solicite o reembolso dentro do prazo.</p></div></section>
+      <section className="final-cta section-pad">
+        <div className="narrow-wrap">
+          <p className="section-kicker">NÃO DEIXE PARA DEPOIS</p>
+          <h2>Comece hoje a usar as <em>+250 atividades</em></h2>
+          <p className="lead">O cupom já está aplicado. Garanta o acesso completo por apenas R$ 27,90 e receba tudo imediatamente no seu e-mail.</p>
+          <Button onClick={scrollToOffer} className="primary-cta">QUERO AS ATIVIDADES AGORA! <ArrowRight /></Button>
+        </div>
+      </section>
       <footer><strong>+250 Atividades</strong><span>Material digital • Acesso imediato</span><small>© 2026. Todos os direitos reservados.</small></footer>
+
+      <div className="sticky-cta">
+        <div className="sticky-coupon"><Zap /> CUPOM APLICADO AUTOMATICAMENTE</div>
+        <Button onClick={scrollToOffer} className="sticky-button">
+          <span className="sticky-price">de <s>R$ 211,00</s> por <b>R$ 27,90</b></span>
+          <span className="sticky-label">QUERO GARANTIR MEU DESCONTO AGORA <ArrowRight /></span>
+        </Button>
+      </div>
 
       {offer > 0 && <Downsell step={offer === 1 ? 1 : 2} onNext={() => setOffer(2)} onClose={() => setOffer(0)} />}
     </main>
