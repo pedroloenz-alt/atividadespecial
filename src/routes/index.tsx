@@ -173,6 +173,14 @@ function Index() {
       <section className="guarantee-section"><ShieldCheck /><div><h2>7 dias de garantia</h2><p>Conheça o material com tranquilidade. Se não fizer sentido para você, solicite o reembolso dentro do prazo.</p></div></section>
       <footer><strong>+250 Atividades</strong><span>Material digital • Acesso imediato</span><small>© 2026. Todos os direitos reservados.</small></footer>
 
+      <div className="sticky-cta">
+        <div className="sticky-coupon"><Zap /> CUPOM APLICADO AUTOMATICAMENTE</div>
+        <Button onClick={scrollToOffer} className="sticky-button">
+          <span className="sticky-price">de <s>R$ 211,00</s> por <b>R$ 27,90</b></span>
+          QUERO GARANTIR MEU DESCONTO AGORA <ArrowRight />
+        </Button>
+      </div>
+
       {offer > 0 && <Downsell step={offer === 1 ? 1 : 2} onNext={() => setOffer(2)} onClose={() => setOffer(0)} />}
     </main>
   );
