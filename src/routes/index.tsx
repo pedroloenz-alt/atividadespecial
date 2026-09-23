@@ -185,7 +185,7 @@ function Index() {
         <div className="sticky-coupon"><Zap /> CUPOM APLICADO AUTOMATICAMENTE</div>
         <Button onClick={scrollToOffer} className="sticky-button">
           <span className="sticky-price">de <s>R$ 211,00</s> por <b>R$ 27,90</b></span>
-          QUERO GARANTIR MEU DESCONTO AGORA <ArrowRight />
+          <span className="sticky-label">QUERO GARANTIR MEU DESCONTO AGORA <ArrowRight /></span>
         </Button>
       </div>
 
