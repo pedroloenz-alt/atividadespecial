@@ -53,10 +53,22 @@ const faqs = [
 function Index() {
   const [seconds, setSeconds] = useState(452);
   const [offer, setOffer] = useState<0 | 1 | 2>(0);
+  const [showSticky, setShowSticky] = useState(false);
 
   useEffect(() => {
     const timer = window.setInterval(() => setSeconds((value) => (value > 0 ? value - 1 : 0)), 1000);
     return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = document.querySelector(".benefits-section");
+      if (!el) return;
+      setShowSticky(el.getBoundingClientRect().bottom < window.innerHeight * 0.35);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const time = `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
@@ -181,13 +193,15 @@ function Index() {
       </section>
       <footer><strong>+250 Atividades</strong><span>Material digital • Acesso imediato</span><small>© 2026. Todos os direitos reservados.</small></footer>
 
-      <div className="sticky-cta">
-        <div className="sticky-coupon"><Zap /> CUPOM APLICADO AUTOMATICAMENTE</div>
-        <Button onClick={scrollToOffer} className="sticky-button">
-          <span className="sticky-price">de <s>R$ 211,00</s> por <b>R$ 27,90</b></span>
-          <span className="sticky-label">QUERO GARANTIR MEU DESCONTO AGORA <ArrowRight /></span>
-        </Button>
-      </div>
+      {showSticky && (
+        <div className="sticky-cta">
+          <div className="sticky-coupon"><Zap /> CUPOM APLICADO AUTOMATICAMENTE</div>
+          <Button onClick={scrollToOffer} className="sticky-button">
+            <span className="sticky-price">de <s>R$ 211,00</s> por <b>R$ 27,90</b></span>
+            <span className="sticky-label">QUERO GARANTIR MEU DESCONTO AGORA <ArrowRight /></span>
+          </Button>
+        </div>
+      )}
 
       {offer > 0 && <Downsell step={offer === 1 ? 1 : 2} onNext={() => setOffer(2)} onClose={() => setOffer(0)} />}
     </main>
